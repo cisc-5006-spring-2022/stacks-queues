@@ -17,6 +17,8 @@ struct NodeType {
     NodeType<ItemType> *next;
 };
 
+// A linked implementation of a stack.
+// In it, the head of the list is the top of the stack.
 template <class ItemType>
 class LinkedStack: public Stack<ItemType> {
     public:
@@ -24,6 +26,7 @@ class LinkedStack: public Stack<ItemType> {
             top = NULL;
         }
 
+        // Put a new element on the stack
         virtual void Push(ItemType item) {
             // Create a new linked list node
             NodeType<ItemType> *newItem = new NodeType<ItemType>;
@@ -37,6 +40,7 @@ class LinkedStack: public Stack<ItemType> {
         };
 
 
+        // Remove an element from the top of the stack.
         virtual void Pop() {
             if (top == NULL) {
                 throw EmptyStack();
@@ -47,6 +51,9 @@ class LinkedStack: public Stack<ItemType> {
             delete tmp;
         };
 
+        // Retrieve the item from the top of the stack.
+        // Returns a copy of the value, but does not change
+        // the contents of the stack.
         virtual ItemType Top() {
             if (top == NULL) {
                 throw EmptyStack();

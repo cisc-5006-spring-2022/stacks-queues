@@ -5,16 +5,16 @@
 
 using namespace std;
 
-int main() {
+bool is_palindrome(string str) {
     LinkedStack<char> s = LinkedStack<char>();
     ArrayQue<char> q = ArrayQue<char>(100);
-
-    string str = "tacocatt";
 
     for (char c: str) {
         s.Push(c);
         q.Enqueue(c);
     }
+
+    bool is_palindrome = true;
 
     for (int i = 0; i < str.length(); i++) {
         char c1 = s.Top();
@@ -22,10 +22,21 @@ int main() {
         char c2 = q.Dequeue();
 
         if (c1 != c2) {
-            cout << "Not a palindrome" << endl;
-            break;
+            return false;
         }
     }
+    return true;
+}
+int main() {
+    if (is_palindrome("tacocat")) {
+        cout << "tacocat is a palindrome" << endl;
+    } else {
+        cout << "tacocat is not a palindrome" << endl;
+    }
 
-    cout << "Palindrome!" << endl;
+    if (is_palindrome("hello")) {
+        cout << "hello is a palindrome" << endl;
+    } else {
+        cout << "hello is not a palindrome" << endl;
+    }
 }
